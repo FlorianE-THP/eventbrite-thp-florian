@@ -3,20 +3,29 @@
     <main role="main">
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
+      <div class="image">
         <div class="container">
-          <h1 class="display-3">Hello, world!</h1>
-          <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-          <p><a <%= link_to "Crée Event", new_event_path, :class =>"btn btn-secondary btn-lg" %></a></p>
+          <h1 class="display-3">Eventbrite</h1>
+          <p>Découvre les sorties à faire entre amis, en famille, ou en couple.</p>
+          <p><a <%= link_to "Créer un évènement", new_event_path, :class =>"btn btn-outline-dark" %></a></p>
+          </div>
           </div>
         </div>
+
+        <h2 style="text-align :center">Meilleurs évènements</h2>
+        <br>
+        <hr class="solid">
+        <br>
+        <br>
         <div class="container">
           <!-- Example row of columns -->
+          <div class="sizelimit">
           <div class="row">
             <% @event.each do |e|%>
               <div class="col-md-4">
-                <h2><%=e.title%></h2>
+                <h3><%=e.title%></h3>
                 <p><%=e.description%> </p>
-                <%= link_to "Lien vers l'évènement", event_path(e.id), :class => "btn btn-success"%>
+                <%= link_to "Lien vers l'évènement", event_path(e.id), :class => "btn btn-outline-primary"%>
                 <br>
                 <br>
                 <br>
@@ -24,11 +33,12 @@
             <% end %>
           </div>
           <hr>
+          </div>
         </div>
         <!-- /container -->
       </main>
-      <footer class="container">
-        <p>© Company 2017-2018</p>
+      <footer class="container" style="text-align :center">
+        <p>© Florian EMPINET 2020</p>
       </footer>
       <!-- Bootstrap core JavaScript
     ================================================== -->

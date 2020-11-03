@@ -1,21 +1,43 @@
-<h2>Log in</h2>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-  <div class="actions">
-    <%= f.submit "Log in" %>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<br>
+<div class="text-center">
+  <h2>Se connecter</h2>
+  <br>
+  <br>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <form>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email</label>
+        <%# <%= f.label :first_name %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Mot de passe</label>
+        <%# <%= f.label :last_name %><br />
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+      <div class="form-group">
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :se_souvenir_de_moi %>
+          </div>
+        <% end %>
+      </div>
+      <div class="text-align :center">
+        <%= f.submit "Se connecter", class: "btn btn-dark justif", style: "text-align :center" %>
+        <br>
+      </div>
+    </form>
   </div>
 <% end %>
-<%= render "devise/shared/links" %>
+<br>
+<div class="d-flex justify-content-center">
+  <br>
+  <%= link_to "Créer un compte", new_registration_path(resource_name) %><br>
+</div>
+
+<div class="d-flex justify-content-center">
+<%= link_to "J'ai oublié mon mot de passe..", new_password_path(resource_name) %>
+</div>

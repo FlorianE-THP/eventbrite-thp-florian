@@ -1,11 +1,84 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<%= link_to "Mon Profil", edit_user_registration_path, :class =>"link"%>
-<div><%= current_user.first_name %></div>
-<div><%= current_user.last_name %></div>
-<div><%= current_user.email %></div>
-<div><%= current_user.description %></div>
+
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+  <body>
+  <div class="container">
+  <div class="text-center">
+    <div class="row">
+      <div class="col-md-7 ">
+        <div class="panel panel-default">
+          <div class="panel-heading text-center">
+            <h1>Salut <%= current_user.first_name %> !</h1>
+          </div>
+          <div class="panel-body">
+            <div class="box box-info">
+              <div class="box-body">
+                <div class="col-sm-6">
+                  <div  style="align-center"><img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive">
+                    <!--Upload Image Js And Css-->
+                  </div>
+                  <br>
+                  <!-- /input-group -->
+                </div>
+                <div class="col-sm-6">
+                  <h5 style="color:#00b1b1;"> </h5>
+                </span>
+                <span>
+                  <p><%= current_user.description %></p>
+                </span>
+              </div>
+              <div class="clearfix"></div>
+              <hr style="margin:5px 0 5px 0;">
+              <div class="col-sm-5 col-xs-6 tital " >Ton prénom:</div>
+              <div class="col-sm-7 col-xs-6 ">
+                <%= current_user.first_name %>
+              </div>
+              <div class="clearfix"></div>
+              <div class="bot-border"></div>
+              <div class="col-sm-5 col-xs-6 tital " >Ton nom:</div>
+              <div class="col-sm-7">
+                <%= current_user.last_name %>
+              </div>
+              <div class="clearfix"></div>
+              <div class="bot-border"></div>
+              <div class="col-sm-5 col-xs-6 tital " >Email:
+              </div>
+              <%= current_user.email %></div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+            <div class="col-sm-5 col-xs-6 tital " >Creation du compte:</div>
+            <div class="col-sm-7"><%= current_user.created_at.strftime("%d/%m/%Y") %></div>
+            <div class="clearfix"></div>
+            <div class="bot-border"></div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <br>
+        <br>
+        <%= link_to "Editer mon profil", edit_user_registration_path, :class =>"btn btn-primary"%>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function() {
+        $('#profile-image1').on('click', function() {
+            $('#profile-image-upload').click();
+        });
+    });
+  </script>
+</div>
+</div>
+h3
+<div class="text-center">
 <% @event.each do |event|%>
-  <div><%= event.title%></div>
-  <div><%= link_to "Voir", event_path(event.id), :class =>"link"%>
+  <h3><div><%= event.title%></div></h3>
+  <div><%= link_to "Voir", event_path(event.id), :class =>"btn btn-primary"%>
   <%end%>
+</div>
+</>

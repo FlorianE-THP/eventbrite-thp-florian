@@ -1,35 +1,54 @@
-<h2>Sign up</h2>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<br>
+<br>
+<br>
+<div class="d-flex justify-content-center align-items-center"> 
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autocomplete: "First Name" %>
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Prénom</label>
+        <%# <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+
   </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autocomplete: "Last Name" %>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Nom</label>
+        <%# <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+   
   </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email</label>
+       <%# <%= f.label :email %><br /> 
+    <%= f.email_field :email %>
+
   </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description, autocomplete: "description" %>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Description</label>
+        <%# <%= f.label :description %><br />
+    <%= f.text_field :description %>
+
   </div>
-  <div class="field">
-    <%= f.label :password %>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+        <%# <%= f.label :password %> 
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password %>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <div class="form-group">
+    <label for="exampleInputPassword1">Verify Password</label>
+        <%# <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
   </div>
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+  <div class="text-align :center"> 
+ <%= f.submit "Sign up", class: "btn btn-dark justif", style: "text-align :center" %>
+ </div>
+</form>
+
+</div>
 <% end %>
 <%= render "devise/shared/links" %>
