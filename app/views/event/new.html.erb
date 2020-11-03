@@ -1,0 +1,47 @@
+<%= form_tag url_for(action: 'create'), method: "post" do %>
+  <div id="container">
+    <form>
+      <div class="row">
+        <div class="col">
+          <%= label_tag 'Titre' %> <br />
+          <%= text_field_tag 'title', @new_event.title, class: "form-control", placeholder: 'Titre', autocomplete: 'off' %>
+          <br />
+          <br />
+        </div>
+        <div class="col">
+          <%= label_tag 'Description' %> <br />
+          <%= text_field_tag 'description', @new_event.description, class: "form-control", placeholder: '20 a 1000 caractéres', autocomplete: 'off'%>
+          <br />
+          <br />
+        </div>
+        <div class="col">
+          <%= label_tag 'Date de depart' %> <br />
+          <%= text_field_tag 'start_date', @new_event.start_date, class: "form-control", placeholder: 'Date de debut', autocomplete: 'off'%>
+          <br />
+          <br />
+        </div>
+        <div class="col">
+          <%= label_tag 'Durée' %> <br />
+          <%= text_field_tag 'duration', @new_event.duration, class: "form-control", placeholder: 'tranches de 5 min', autocomplete: 'off'%>
+          <br />
+          <br />
+        </div>
+        <div class="col">
+          <%= label_tag 'Prix entrée' %> <br />
+          <%= text_field_tag 'price', @new_event.price, class: "form-control", placeholder: 'Prix €', autocomplete: 'off'%>
+          <br />
+          <br />
+        </div>
+        <div class="col">
+          <%= label_tag 'Lieux' %> <br />
+          <%= text_field_tag 'location', @new_event.location, class: "form-control", placeholder: 'Ville', autocomplete: 'off'%>
+          <br />
+          <br />
+        </div>
+      </div>
+    </select>
+    <br />
+    <%= submit_tag "Create Gossip", class: "btn btn-info" %>  <%= link_to "Revenir à l'accueil", root_path, :class => 'btn btn-secondary'%>
+  </div>
+<% end %>
+</form>

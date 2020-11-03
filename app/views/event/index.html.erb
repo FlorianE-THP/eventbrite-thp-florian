@@ -1,0 +1,43 @@
+ <html>
+  <body>
+    <main role="main">
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Hello, world!</h1>
+          <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+          <p><a <%= link_to "Crée Event", new_event_path, :class =>"btn btn-secondary btn-lg" %></a></p>
+          </div>
+        </div>
+        <div class="container">
+          <!-- Example row of columns -->
+          <div class="row">
+            <% @event.each do |e|%>
+              <div class="col-md-4">
+                <h2><%=e.title%></h2>
+                <p><%=e.description%> </p>
+                <%= link_to "Lien vers l'évènement", event_path(e.id), :class => "btn btn-success"%>
+                <br>
+                <br>
+                <br>
+              </div>
+            <% end %>
+          </div>
+          <hr>
+        </div>
+        <!-- /container -->
+      </main>
+      <footer class="container">
+        <p>© Company 2017-2018</p>
+      </footer>
+      <!-- Bootstrap core JavaScript
+    ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script>
+        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+      </script>
+      <script src="../../assets/js/vendor/popper.min.js"></script>
+      <script src="../../dist/js/bootstrap.min.js"></script>
+    </body>
+  </html>
