@@ -31,6 +31,9 @@
           <br>
           <p><%= "Contact: #{@event.organizer.email}"%></p>
         </div>
+        <% if can_join? == true %>
+        <%= link_to "Payer", new_charge_path, :class =>"btn btn-outline-dark" %>
+        <% end %>
       </div>
       </div>
     </div>
