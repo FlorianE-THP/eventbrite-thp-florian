@@ -21,8 +21,8 @@ class Event < ApplicationRecord
 
   validates :price,
             presence: true,
-            :inclusion => 1..1000,
-            numericality: { greater_than: 0, Integer: true }
+            :inclusion => 0..1000,
+            numericality: { greater_than: -1, Integer: true }
 
   validates :location,
             presence: true

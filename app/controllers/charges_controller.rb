@@ -20,14 +20,12 @@ class ChargesController < ApplicationController
       currency: "usd",
     })
 
-    if charge.created
-      redirect_to new_event_charge_attendance_path(:event_id => @event.id, :charge_id => charge.id)
+    if customer.save && charge.save
+      Attendance.create(stripe_customer_id: customer.id, user_id: current_user.id, event_id: @event.id)
+      redirect_to event_path(@event.id)
     end
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path
-  end
-
-  def edit
   end
 end

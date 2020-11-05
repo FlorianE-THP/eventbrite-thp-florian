@@ -1,0 +1,6 @@
+<% @users.each do |usr| %>
+  <h6><%=  usr.first_name %></h6>
+  <p><%=  usr.last_name %> </p>
+  <p><%=  usr.email %> </p>
+<%  end %>
+<%= link_to "Gérer mon évènement", edit_event_path(@event.id), :class =>"btn btn-outline-warning"  %>

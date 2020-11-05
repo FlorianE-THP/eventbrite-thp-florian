@@ -36,7 +36,9 @@
 
     <%= submit_tag "Modifier", class: "btn btn-primary" %>  <%= link_to "Revenir à l'accueil", root_path, :class => 'btn btn-info'%>
 </div>
+<%= link_to "Supprimer", @event_edit, method: :delete, data: {confirm: "T'es sur ?"}, :class => 'btn btn-danger'%>
       <% end %>
+      
 
         </form>
  <h3> Editer ma photo </h3>
