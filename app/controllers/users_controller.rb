@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @event = Event.where(organizer: current_user)
+    @user = User.find(params[:id])
   end
 
   private

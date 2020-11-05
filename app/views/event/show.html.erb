@@ -1,3 +1,4 @@
+                      
 <!doctype html>
 <html lang="fr">
   <head>
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
+
   <body>
   <br>
   <br>
@@ -22,6 +24,15 @@
     <div class='text-center'>
       <div class="card" style="width: 50rem;">
         <div class="card-body">
+        
+  <% if @event.avatar.attached? %>
+  <%= image_tag @event.avatar, alt: 'avatar' %>
+<% else %>
+<h5> Pour valider votre évènement, il faut une photo </h5>
+                <% end%>
+
+
+
           <h4> Prix Entrée : <%= @event.price %>€ </h4>
           <h1 class="card-title"><%= @event.title %></h1>
           <h5> à <%= @event.location%> </h5>
@@ -30,12 +41,15 @@
           <h5 class="card-text"><%= @event.description%></h5>
           <br>
           <p><%= "Contact: #{@event.organizer.email}"%></p>
+
+          <%= link_to "Editer l'évènement", edit_event_path(@event.id), :class => "btn btn-outline-primary"%>
         </div>
-        <% if can_join? == true %>
-        <%= link_to "Payer", new_charge_path, :class =>"btn btn-outline-dark" %>
-        <% end %>
+
+        <%# <%= link_to "Payer", new_event_charge_path(@event.id), :class =>"btn btn-outline-dark" %>
+
       </div>
       </div>
     </div>
+
   </body>
 </html>

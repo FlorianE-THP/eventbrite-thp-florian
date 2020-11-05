@@ -51,6 +51,8 @@
           <%= text_field_tag 'location', @new_event.location, class: "form-control", placeholder: 'Ville', autocomplete: 'off'%>
 
             </div>
+             
+            
              <%= submit_tag "Créer l'évènement", class: "btn btn-info" %>  <%= link_to "Revenir à l'accueil", root_path, :class => 'btn btn-secondary'%>
         </form>
 <% end%>
