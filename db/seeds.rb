@@ -17,10 +17,10 @@ Attendance.destroy_all
   User.create!(email: "#{e}@yopmail.com", description: Faker::Lorem.sentence(word_count: 3), first_name: e, last_name: Faker::Name.last_name, password: "testing")
 end
 
-5.times do
+10.times do
   Event.create!(start_date: Faker::Date.forward(days: 23), duration: rand(1..40) * 5, title: Faker::Lorem.sentence(word_count: 5), description: Faker::Lorem.sentence(word_count: 10), price: rand(1..1000), location: Faker::Address.city, organizer_id: User.ids.sample)
 end
 
-5.times do
+10.times do
   Attendance.create!(stripe_customer_id: Faker::Lorem.sentence(word_count: 1), user_id: User.ids.sample, event_id: Event.ids.sample)
 end

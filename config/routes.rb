@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :attendances
     resources :avatars, only: [:create]
   end
+
   devise_for :users
 
   root "event#index"

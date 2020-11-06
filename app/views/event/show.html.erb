@@ -19,6 +19,7 @@
             <%if @event.avatar.attached? && current_user.id == @event.organizer_id%>
               <%= image_tag @event.avatar, alt: 'avatar' %>
               <h3>Changer d'avatar ?</h3>
+                          <br>
               <%= form_tag event_avatars_path(@event.id), multipart: true do %>
                 <%= file_field_tag :avatar %>
                 <%= submit_tag "mettre à jour" %>
@@ -26,6 +27,7 @@
             <% elsif @event.avatar.attached?%>
               <%= image_tag @event.avatar, alt: 'avatar' %>
             <%end%>
+            <br>
             <h4> Prix Entrée : <%= @event.price %>€ </h4>
             <h1 class="card-title"><%= @event.title %></h1>
             <h5> à <%= @event.location%> </h5>
@@ -38,15 +40,17 @@
                 <small class="text-muted">Pour joindre le créateur de l'évènement, contactez  <%=@event.organizer.first_name%> <%=@event.organizer.last_name%> via <%=@event.organizer.email%></small>
                 <br>
                 <br>
+                
+                
                 <% if current_user.id == @event.organizer.id %>
-                  <%= link_to "Gérer mon évènement", event_attendances_path(@event.id), :class =>"btn btn-outline-warning"  %> <br/>
-                <% elsif @participation == false %>
-                  Vous êtes inscrit(e) à cet évènement ! 
-                <% elsif is_free? == true %>
-                <%= link_to "Participer", event_attendances_path(@event.id), method: :create, :class =>"btn btn-outline-warning"  %> <br/>
-                <% elsif @participation == true %>
-                  <%= link_to "Participer et Payer", new_event_charge_path(params[:id]), :class =>"btn btn-outline-warning"  %> <br/>
-                <% end %>
+              <%= link_to "Gérer mon évènement", event_attendances_path(@event.id), :class =>"btn btn-outline-warning"  %> <br/>
+            <% elsif is_free? && @attendance == false %>
+              <%= link_to "Participer Gratuitement", event_attendances_path(@event.id), method: :create, :class =>"btn btn-outline-warning"  %> <br/>
+            <% elsif @attendance == false%>
+              <%= link_to "Participer", new_event_charge_path(params[:id]), :class =>"btn btn-outline-warning"  %> <br/>
+            <%else%>
+              <h3>Vous participez deja a l'evenement, ou vous me faite super chier a vouloir bugué mon site</h3>
+            <% end %>
               <% end %>
             </div>
           </div>

@@ -1,5 +1,5 @@
 class EventController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :new]
+  before_action :authenticate_user!, only: [:create, :new, :show, :edit, :destroy, :update]
 
   def index
     @event = Event.all
@@ -27,13 +27,11 @@ class EventController < ApplicationController
     @event = Event.find(params[:id])
     @end_date = @event.start_date + (@event.duration * 60)
 
-    @participation = @event.attendances.find_by(user_id: current_user[:id], event_id: @event.id)
+    @attendance = Attendance.where(user_id: current_user.id, event_id: @event.id).exists?
   end
 
   def edit
     @event_edit = Event.find(params[:id])
-
-    # Méthode qui récupère le potin concerné et l'envoie à la view edit (edit.html.erb) pour affichage dans un formulaire d'édition
   end
 
   def update
