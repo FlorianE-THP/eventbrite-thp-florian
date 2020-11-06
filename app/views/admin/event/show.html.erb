@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title><%= @event.title %></title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+
+    <body>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class='d-flex justify-content-center text-center'>
+        <div class="card" style="width: 50rem;">
+          <div class="card-body">
+            <%if @event.avatar.attached? %>
+              <%= image_tag @event.avatar, alt: 'avatar' %>
+              
+            <%end%>
+            <br>
+            <h4> Prix Entrée : <%= @event.price %>€ </h4>
+            <h1 class="card-title"><%= @event.title %></h1>
+            <h5> à <%= @event.location%> </h5>
+            <h4 class="card-text"><%= "Le #{@event.start_date.strftime("%d/%m/%Y")} à #{@event.start_date.strftime("%I:%M%p")}" %></h4>
+            <p><%= "Fin : #{@end_date.strftime("%I:%M%p")}" %></p>
+            <h5 class="card-text"><%= @event.description%></h5>
+            <br>
+            <p><%= "Contact: #{@event.organizer.email}"%></p>
+              <div>
+                <small class="text-muted">Pour joindre le créateur de l'évènement, contactez  <%=@event.organizer.first_name%> <%=@event.organizer.last_name%> via <%=@event.organizer.email%></small>
+                <br>
+                <br>
+                <%# <% if current_user.id == @event.organizer.id %>
+              <%# <%= link_to "Gérer mon évènement", event_attendances_path(@event.id), :class =>"btn btn-outline-warning"  %> <br/> 
+            <%# <% elsif is_free? && @attendance == false %> 
+            <%= button_to "Supprimer", @event, :method => :delete, data: {confirm: "Confirmer ?"}, :class => 'btn btn-danger'%>
+              <%= link_to "Editer", edit_admin_event_path(@event.id), :class =>"btn btn-outline-warning"  %> <br/>
+            <%# <% elsif @attendance == false%>
+              <%# <%= link_to "Participer", new_event_charge_path(params[:id]), :class =>"btn btn-outline-warning"  %> <br/>
+            <%# <%else%>
+              <%# <h3>Vous participez deja a l'evenement, ou vous me faite super chier a vouloir bugué mon site</h3> %>
+            <%# <% end %> 
+             
+            </div>
+          </div>
+        </body>
+      </html>

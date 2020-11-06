@@ -12,6 +12,7 @@
         <div class="panel panel-default">
           <div class="panel-heading text-center">
             <h1>Salut <%= current_user.first_name %> !</h1>
+            <%= link_to "Page Admin", admin_root_path, :class =>"btn btn-primary"%>
           </div>
           <div class="panel-body">
             <div class="box box-info">

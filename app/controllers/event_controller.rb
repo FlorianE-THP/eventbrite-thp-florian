@@ -16,7 +16,8 @@ class EventController < ApplicationController
                               "description" => params[:description],
                               "location" => params[:location],
                               "price" => params[:price],
-                              "organizer_id" => current_user.id)
+                              "organizer_id" => current_user.id,
+                              "validated?" => nil)
 
     if @new_event.save
       redirect_to edit_event_path(@new_event.id)
@@ -36,7 +37,7 @@ class EventController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    post_params = params.require(:event).permit(:title, :description, :price, :location, :start_date, :duration)
+    post_params = params.require(:event).permit(:title, :description, :price, :location, :start_date, :duration, :validated?)
     @event.update(post_params)
     redirect_to root_path
   end
@@ -45,5 +46,14 @@ class EventController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
     redirect_to root_path
+  end
+
+  private
+
+  def is_validate?
+    @event = Event.find(params[:id])
+    unless @event.validated? == true
+      return true
+    end
   end
 end

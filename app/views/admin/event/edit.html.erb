@@ -1,0 +1,47 @@
+<h1> Valider un évènement </h1>
+
+
+<%= form_for @event_edit do |f| %>
+<form>
+  <div class="row">
+    <div class="col">
+
+        <%= f.text_field :title, class: "form-control", placeholder: 'Un titre sympa', autocomplete: 'off' %>
+        <br /> <br />
+</div>
+<div class="col">
+        <%= f.text_field :description, class: "form-control", placeholder: 'Votre potin', autocomplete: 'off'%>
+    </div>
+    <div class="col">
+        <%= f.text_field :start_date, class: "form-control", placeholder: 'Votre potin', autocomplete: 'off'%>
+    </div>
+    <div class="col">
+        <%= f.text_field :price, class: "form-control", placeholder: 'Votre potin', autocomplete: 'off'%>
+    </div>
+    <div class="col">
+        <%= f.text_field :location, class: "form-control", placeholder: 'Votre potin', autocomplete: 'off'%>
+    </div>
+    <div class="col">
+        <%= f.text_field :duration, class: "form-control", placeholder: 'Votre potin', autocomplete: 'off'%>
+    </div>
+<div class="field">
+  <%= f.label "Tutor/Teacher? Tick" %>
+  <%= f.check_box :validated?, class: "form-control", placeholder: "Tick if you are a Tutor" %>
+</div>
+    <br /> 
+
+    <%= submit_tag "Modifier", class: "btn btn-primary" %>  <%= link_to "Revenir à l'accueil", root_path, :class => 'btn btn-info'%>
+</div>
+<%= link_to "Supprimer", @event_edit, method: :delete, data: {confirm: "T'es sur ?"}, :class => 'btn btn-danger'%>
+
+<%= link_to "Valider", admin_event_path, method: :update, :class => 'btn btn-danger'%>
+      <% end %>
+      
+
+        </form>
+ <h3> Editer la photo </h3>
+        <%= form_tag event_avatars_path(@event_edit.id), multipart: true do %>
+  <%= file_field_tag :avatar %>
+  <%= submit_tag "Ajouter une photo" %>
+  <% end %>
+

@@ -1,0 +1,7 @@
+<h1> PAGE ADMIN EVENT </h1>
+<% @events.each do |e| %>
+  <%= e.title %>
+  <%= e.description %>
+  <%= link_to "Lien vers l'évènement", admin_event_path(e.id), :class => "btn btn-outline-primary"%>
+  <%= button_to "Supprimer", e, :method => :delete, data: {confirm: "Confirmer ?"}, :class => 'btn btn-danger'%>
+<% end %>

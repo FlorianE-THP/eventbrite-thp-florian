@@ -5,11 +5,14 @@ Rails.application.routes.draw do
     resources :avatars, only: [:create]
   end
 
+  namespace :admin do
+    root "admin#index"
+    resources :event, :users
+  end
   devise_for :users
 
   root "event#index"
   resources :users, only: [:show] do
     resources :pictures, only: [:create]
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
