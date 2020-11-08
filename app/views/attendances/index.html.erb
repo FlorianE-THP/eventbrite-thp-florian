@@ -1,6 +1,91 @@
-<% @users.each do |usr| %>
-  <h6><%=  usr.first_name %></h6>
-  <p><%=  usr.last_name %> </p>
-  <p><%=  usr.email %> </p>
-<%  end %>
-<%= link_to "Gérer mon évènement", edit_event_path(@event.id), :class =>"btn btn-outline-warning"  %>
+<body>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">A propos de votre évènement
+      <small><%=@event.title%></small>
+    </h1>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="/">Accueil</a>
+      </li>
+      <li class="breadcrumb-item active">A propos</li>
+    </ol>
+
+    <!-- Intro Content -->
+    <div class="row">
+      <div class="col-lg-6">
+        <%= image_tag @event.avatar, alt: 'avatar', class: "img-fluid rounded mb-4"%>
+      <div class="text-center">
+      <%= link_to "Modifier mon évènement", edit_event_path(@event.id), :class =>"btn btn-outline-success"  %>
+      </div>
+      </div>
+      <div class="col-lg-6 text-center">
+        <h2><%=@event.title%></h2>
+        <br>
+        <h5> Description </h5>
+        <p><%=@event.description%></p>
+        <h5> Date </h5>
+        <p><%=@event.start_date.strftime("%d/%m/%Y %H:%M")%></p>
+        <h5> Prix </h5>
+        <p><%=@event.price%>€</p>
+        <h5> Lieu </h5>
+        <p><%=@event.location%></p>
+        <h5> Participations </h5>
+        <p><%=@users.count%></p>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Team Members -->
+    <h2>Participants</h2>
+<br>
+    <div class="row">
+    <% @users.each do |usr| %>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100 text-center">
+          <%if usr.picture.attached?%>
+          <%= image_tag usr.picture, alt: 'avatar', class: "img-fluid rounded mb-4"%>
+           <%end%>
+          <div class="card-body">
+            <h4 class="card-title"><%=  usr.first_name %> <%=  usr.last_name %></h4>
+            <h6 class="card-subtitle mb-2 text-muted"><%=  usr.email %></h6>
+
+            <p class="card-subtitle mb-2 text-muted">A payé :<%=@event.price%>€ </p>
+          </div>
+          <br>
+          <div class="card-footer">
+            <a href="mailto:<%=usr.email%>">Contacter</a>
+          </div>
+                        
+        </div>
+
+      </div>
+      <%  end %>
+
+</div>
+
+      
+    <!-- /.row -->
+
+    <!-- Our Customers -->
+    
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+</body>

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include EventHelper
+  include AttendancesHelper
 
   protect_from_forgery with: :exception
 

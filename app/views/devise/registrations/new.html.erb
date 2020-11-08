@@ -2,53 +2,70 @@
 <br>
 <br>
 <br>
-<div class="d-flex justify-content-center align-items-center"> 
+<div class="d-flex justify-content-center"> 
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 <form>
+<div class="d-flex justify-content-center"> 
   <div class="form-group">
     <label for="exampleInputEmail1">Prénom</label>
         <%# <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>
 
   </div>
+  </div>
+
+  <div class="d-flex justify-content-center"> 
   <div class="form-group">
     <label for="exampleInputEmail1">Nom</label>
         <%# <%= f.label :last_name %><br />
     <%= f.text_field :last_name %>
    
   </div>
+  </div>
+
+  <div class="d-flex justify-content-center"> 
   <div class="form-group">
     <label for="exampleInputEmail1">Email</label>
        <%# <%= f.label :email %><br /> 
     <%= f.email_field :email %>
 
   </div>
+  </div>
+  <div class="d-flex justify-content-center"> 
   <div class="form-group">
     <label for="exampleInputEmail1">Description</label>
         <%# <%= f.label :description %><br />
     <%= f.text_field :description %>
 
   </div>
+  </div>
+  <div class="d-flex justify-content-center"> 
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-        <%# <%= f.label :password %> 
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <label for="exampleInputPassword1">Mot de passe</label>
+<br />
     <%= f.password_field :password %>
   </div>
+  </div>
+
+  <div class="d-flex justify-content-center"> 
     <div class="form-group">
-    <label for="exampleInputPassword1">Verify Password</label>
+    <label for="exampleInputPassword1">Vérification Mot de passe</label>
         <%# <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </div>
-  <div class="text-align :center"> 
- <%= f.submit "Sign up", class: "btn btn-dark justif", style: "text-align :center" %>
+  </div>
+
+  <div class="d-flex justify-content-center"> 
+ <%= f.submit "Créer un compte", class: "btn btn-dark justif", style: "text-align :center" %>
  </div>
+ </div>
+
 </form>
 
-</div>
+
 <% end %>
+<div class="d-flex justify-content-center"> 
 <%= render "devise/shared/links" %>
+</div>

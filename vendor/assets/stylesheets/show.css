@@ -1,0 +1,14 @@
+ul {
+    text-align: center;
+    list-style-position: inside;
+}
+
+.form-tag {
+    background-color: black;
+}
+
+#avatar {
+    max-width: 600px;
+    max-height: 1000px;
+    object-fit: cover;
+}

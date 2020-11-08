@@ -1,97 +1,95 @@
-
-
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <!------ Include the above in your HEAD tag ---------->
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Eventbrite - Page Profil</title>
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/modern-business.css" rel="stylesheet">
+  </head>
   <body>
-  <div class="container">
-  <div class="text-center">
-    <div class="row">
-      <div class="col-md-7 ">
-        <div class="panel panel-default">
-          <div class="panel-heading text-center">
-            <h1>Salut <%= current_user.first_name %> !</h1>
-            <%= link_to "Page Admin", admin_root_path, :class =>"btn btn-primary"%>
-          </div>
-          <div class="panel-body">
-            <div class="box box-info">
-              <div class="box-body">
-                <div class="col-sm-6">
-                <%if @user.picture.attached?%>
-                      <%= image_tag @user.picture, alt: 'picture', id: "profile-image1", class: "img-circle img-responsive"%>
-                      <%= form_tag user_pictures_path(@user), multipart: true do %>
-                        <%= file_field_tag :picture %>
-                        <%= submit_tag "mettre à jour" %>
-                      <% end %>
-                    <%else%>
-                      <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive">
-                      <h3>Changer d'avatar ?</h3>
-                      <%= form_tag user_pictures_path(@user), multipart: true do %>
-                        <%= file_field_tag :picture %>
-                        <%= submit_tag "mettre à jour" %>
-                      <% end %>
-                    <%end%>
-                  
-                  <br>
-                  <!-- /input-group -->
-                </div>
-                <div class="col-sm-6">
-                  <h5 style="color:#00b1b1;"> </h5>
-                </span>
-                <span>
-                  <p><%= current_user.description %></p>
-                </span>
-              </div>
-              <div class="clearfix"></div>
-              <hr style="margin:5px 0 5px 0;">
-              <div class="col-sm-5 col-xs-6 tital " >Ton prénom:</div>
-              <div class="col-sm-7 col-xs-6 ">
-                <%= current_user.first_name %>
-              </div>
-              <div class="clearfix"></div>
-              <div class="bot-border"></div>
-              <div class="col-sm-5 col-xs-6 tital " >Ton nom:</div>
-              <div class="col-sm-7">
-                <%= current_user.last_name %>
-              </div>
-              <div class="clearfix"></div>
-              <div class="bot-border"></div>
-              <div class="col-sm-5 col-xs-6 tital " >Email:
-              </div>
-              <%= current_user.email %></div>
-            <div class="clearfix"></div>
-            <div class="bot-border"></div>
-            <div class="col-sm-5 col-xs-6 tital " >Creation du compte:</div>
-            <div class="col-sm-7"><%= current_user.created_at.strftime("%d/%m/%Y") %></div>
-            <div class="clearfix"></div>
-            <div class="bot-border"></div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+    <!-- Page Content -->
+    <div class="container">
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3"><%= current_user.first_name %>
+        <small> <%= current_user.last_name %> </small>
+      </h1>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="/">Accueil</a>
+        </li>
+        <li class="breadcrumb-item active">Profil</li>
+      </ol>
+      <!-- Portfolio Item Row -->
+      <div class="row">
+        <div class="col-md-8">
+          <%if @user.picture.attached?%>
+            <%= image_tag current_user.picture, alt: 'picture', class: "img-fluid", id: "avatar"%>
+          <% end %>
         </div>
-        <br>
-        <br>
-        <%= link_to "Editer mon profil", edit_user_registration_path, :class =>"btn btn-primary"%>
-        <br>
-        <br>
+        <div class="col-md-4" style="text-align :center">
+          <h3 class="my-3", style="text-align :center">Description</h3>
+          <br>
+          <p><%= current_user.description %></p>
+          <br>
+          <h3 class="my-3", style="text-align :center">Informations du compte</h3>
+          <br>
+          <ul>
+            <li><%= current_user.email %></li>
+            <li><%= current_user.created_at.strftime("%d/%m/%Y") %></li>
+          </ul>
+          <br>
+          <br>
+          <%= link_to "Page Admin", admin_root_path, :class =>"btn btn-outline-primary"%>
+          <%= link_to "Editer mon profil", edit_user_registration_path, :class =>"btn btn-outline-primary", :style => "text-align :center"%>
+          <br>
+          <br>
+          <h3>Changer d'avatar ?</h3>
+          <br>
+          <%= form_tag user_pictures_path(@user), multipart: true do %><br>
+            <%= file_field_tag :picture %><br>
+            <%= submit_tag "mettre à jour", :class => 'btn btn-default btn-sm' %><br>
+          <% end %>
+        </div>
       </div>
+      <!-- /.row -->
+      <!-- Related Projects Row -->
+      <h3 class="my-4">Évenements</h3>
+      <div class="row">
+        <div class="container">
+          <div class="row">
+            <% @event.each do |e|%>
+              <% if e.avatar.attached? %>
+                <div class="col-md-3 col-sm-6 mb-4">
+                  <div class="card h-100">
+                    <%= image_tag e.avatar, alt: 'avatar', class: "card-img-top"%>
+                    <div class="card-body", style="text-align :center">
+                      <h4 class="card-title">
+                        <h3><%=e.title%></h3>
+                      </h4>
+                      <p><%=e.description%> </p>
+                      <%= link_to "Lien vers l'évènement", event_path(e.id), :class => "btn btn-outline-primary"%>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
     </div>
-  </div>
-  <script>
-    $(function() {
-        $('#profile-image1').on('click', function() {
-            $('#profile-image-upload').click();
-        });
-    });
-  </script>
-</div>
-</div>
-h3
-<div class="text-center">
-<% @event.each do |event|%>
-  <h3><div><%= event.title%></div></h3>
-  <div><%= link_to "Voir", event_path(event.id), :class =>"btn btn-primary"%>
-  <%end%>
-</div>
-</>
+    <!-- /.container -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <br>
+    <br>
+    <br>
+  </body>
+  <br>
+  <br>
+  <br>
+</html>
